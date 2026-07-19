@@ -1,0 +1,143 @@
+def arrow_masuk():
+    maxchar = 16
+    maxbar = 5
+    spasi = 10
+    tinggi = 14
+    panah = []
+
+    for i in range(tinggi):
+        # Menambahkan spasi sebelum bar
+        panah.append(" " * min(spasi, 6) + "|||||")
+        
+        if i == 5:
+            panah[i] = "\\\\    |||||    //"
+            spasi = 3
+        elif i > 5 and spasi >= 0:
+            panah[i] = " " * (4 - spasi) + "\\\\" + " " * spasi + "|||||" + " " * spasi + "//"
+            spasi  -= 1
+        elif spasi == -1:
+            spasi2 = 5
+            panah[i] = " " * spasi2 + "\\\\|||//"
+            spasi2 += 1
+            spasi -= 1
+        elif spasi < -1:
+            panah[i] = " " * spasi2 + "\\\\|//"
+            spasi2 += 1
+
+    # Mengatur garis terakhir untuk menghindari kesalahan indeks
+    panah[-1] = ""
+    panah[-2] = " " * (spasi2 - 2) + "\\|/"
+    panahakhir = ["      |||||"]
+
+    for i in panah:
+        panahakhir.append(i)
+
+    # Mencetak hasil akhir
+    for i in panahakhir:
+        print(i)
+
+def arrow_keluar():
+    maxchar = 16
+    maxbar = 5
+    space = 10
+    line = 14
+    panah = []
+
+    for i in range(line):
+        
+        panah.append(" " * min(space, 6) + "|||||")
+        
+        if i == 5:
+            panah[i] = "//    |||||    \\\\"
+            space = 3
+        elif i > 5 and space >= 0:
+            panah[i] = " " * (4 - space) + "//" + " " * space + "|||||" + " " * space + "\\\\"
+            space -= 1
+        elif space == -1:
+            space2 = 5
+            panah[i] = " " * space2 + "//|||\\\\"
+            space2 += 1
+            space -= 1
+        elif space < -1:
+            panah[i] = " " * space2 + "//|\\\\"
+            space2 += 1
+
+    
+    panah[-1] = ""
+    panah[-2] = " " * (space2 - 2) + "/|\\"
+    panahakhir = ["      |||||"]
+
+    for i in reversed (panah):
+        panahakhir.append(i)
+
+    
+    for i in panahakhir:
+        print(i)
+
+arrow_masuk()
+
+print ("==================")
+# Pada proses Tap in terdapat dua bagian, yakni menggunakan QRIS atau Tiket
+
+sistem_pembayaran = input("""Sistem pembayaran yang digunakan :
+      A. QRIS
+      B. Ticket
+ Sistem pembayaran yang ingin digunakan : """,  )
+
+if sistem_pembayaran == "A" or sistem_pembayaran == "QRIS" :
+    print (" Silahkan scan QRIS ")
+# Untuk pembayaran QRIS secara terperinci harus menggunakan library pyzbar dimana belum dipelajari sehingga tidak digunakan
+# Anggap QRIS selalu benar dikarenakan sudah dilakukan pembayaran di awal dan QRIS yang ditampilkan selalu benar
+    print ("==================")
+    arrow_keluar ()
+    print ("  SILAHKAN MASUK ")
+
+
+
+elif sistem_pembayaran == "B" or sistem_pembayaran == "Ticket" :
+    saldo = int(input("Masukkan saldo yang ingin di top-up : ")) 
+    print ("Tempelkan kartu anda")
+    print ("==================")
+    arrow_keluar ()
+    print ("  SILAHKAN MASUK ")
+
+else :
+    print ("Pilihan tidak sesuai")
+
+# Mekanisme Mesin 
+
+harga_stasiun = [0 for i in range(7)]
+
+harga = 0
+
+for i in range(7):
+    harga += 3000
+    harga_stasiun[i] = harga
+# Tap Out
+
+arrow_masuk()
+print("==================")
+
+sistem_pembayaran = input(""" Sistem pembayaran yang digunakan :
+        A. QRIS
+        B. Ticket
+ Sistem pembayaran yang ingin digunakan : """, )
+
+if sistem_pembayaran == "A" or sistem_pembayaran == "QRIS":
+    print(" Silahkan scan QRIS ")
+    # Untuk pembayaran QRIS secara terperinci harus menggunakan library pyzbar dimana belum dipelajari sehingga tidak digunakan
+    # Anggap QRIS selalu benar dikarenakan sudah dilakukan pembayaran di awal dan QRIS yang ditampilkan selalu benar
+
+    arrow_keluar()
+    print("==================")
+    print("  TERIMA KASIH ")
+
+elif sistem_pembayaran == "B" or sistem_pembayaran == "Ticket":
+    tujuan = int(input("Pada stasiun pembayaran ke (1-7): "))
+    if harga_stasiun[tujuan-1] > saldo:
+        print("Silahkan top-up di counter terdekat")
+    elif harga_stasiun[tujuan-1] <= saldo:
+        arrow_keluar()
+        print("==================")
+        print("  TERIMA KASIH ")
+        print("  Saldo yang tersisa :", saldo - harga_stasiun[tujuan-1])
