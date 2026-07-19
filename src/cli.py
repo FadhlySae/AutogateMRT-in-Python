@@ -3,6 +3,7 @@ from __future__ import annotations
 from .display import render_arrow
 from .costlogic import build_fares
 
+import sys
 
 # MODULAR PROGRAM: Command Line Interface (cli.py)
 # Description: Manage interactions with users by Terminal Command--Main Logic.
@@ -18,6 +19,7 @@ def normalize_payment(raw: str) -> str:
         return "TICKET"
     else:
         print("Payment must be A/QRIS or B/TICKET")
+        sys.exit()
         
     raise ValueError("Payment must be A/QRIS or B/TICKET")
 
@@ -35,7 +37,7 @@ def tap_in() -> int | None:
         print("TRANSACTION SUCCES\nPLEASE ENTER")
         return None
 
-    saldo = int(input("Masukkan saldo yang ingin di top-up: "))
+    saldo = int(input("Enter number for credit top-up: "))
     print("Tap Your Card")
     print("==================")
     render_arrow("out")
