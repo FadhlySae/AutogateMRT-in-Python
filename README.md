@@ -3,6 +3,8 @@
 ## Introduction
 
 Autogate MRT Simulation is a Python terminal-based project that models the entry and exit flow of an MRT commuter gate system. It demonstrates how an autogate can process two payment methods, QRIS and ticket balance, while guiding the user through Tap-In and Tap-Out interactions in a simple command-line interface.
+[!Data Decompotition](./WI1102 - Computational Thinking/Data Decomposition.png)
+[!Flowchart](./WI1102 - Computational Thinking/Flowchart.png)
 
 This project was originally developed as a procedural systems project and later refactored into smaller modules for better readability, maintainability, and portfolio presentation.
 
@@ -65,6 +67,3 @@ autogate-mrt-simulation/
 
 ## License
 This project does not currently define a license.
-
-
-If you want a simple permissive option, **MIT License** is usually a good default for student and portfolio projects.
