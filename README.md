@@ -8,8 +8,7 @@ Autogate MRT Simulation is a Python terminal-based project that models the entry
 
 This project was originally developed as a procedural systems project and later refactored into smaller modules for better readability, maintainability, and portfolio presentation.
 
-
-### Tech stack
+### What's Used in This Project
 - Python 3
 - Standard Library only
 - Command-line interface (CLI)
